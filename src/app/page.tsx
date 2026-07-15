@@ -1,11 +1,13 @@
 import { Hero } from "@/components/landing/Hero";
 import { Header } from "@/components/layout/Header";
+import { FeatureBar } from "@/components/landing/FeatureBar";
 
 export default function HomePage() {
   return (
     <main>
       <Header />
       <Hero />
+      <FeatureBar />
 
       <section className="section bg-[var(--cairn-night)] text-white">
         <div className="container">

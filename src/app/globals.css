@@ -13,7 +13,8 @@
 
   --cairn-sage: #788276;
   --cairn-forest: #263d37;
-  --cairn-night: #14252e;
+  --cairn-night: #152832;
+  --cairn-night-soft: #21353e;
 
   --background: var(--cairn-paper);
   --foreground: var(--cairn-ink);
