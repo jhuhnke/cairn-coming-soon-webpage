@@ -92,3 +92,51 @@ svg {
     padding-block: 64px;
   }
 }
+
+.maplibregl-map {
+  font-family: inherit;
+}
+
+.maplibregl-canvas {
+  outline: none;
+}
+
+.maplibregl-ctrl-bottom-right {
+  bottom: 8px;
+  right: 8px;
+}
+
+.maplibregl-ctrl-attrib {
+  max-width: 180px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.84) !important;
+  font-size: 8px;
+  backdrop-filter: blur(8px);
+}
+
+.maplibregl-popup-content {
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 12px 30px rgba(23, 41, 52, 0.18);
+}
+
+.maplibregl-popup-tip {
+  border-top-color: white !important;
+}
+
+.cairn-map-popup {
+  display: flex;
+  min-width: 120px;
+  flex-direction: column;
+  color: var(--cairn-ink);
+}
+
+.cairn-map-popup strong {
+  font-size: 0.75rem;
+}
+
+.cairn-map-popup span {
+  margin-top: 3px;
+  color: var(--cairn-ink-soft);
+  font-size: 0.65rem;
+}
