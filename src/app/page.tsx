@@ -2,6 +2,7 @@ import { Hero } from "@/components/landing/Hero";
 import { Header } from "@/components/layout/Header";
 import { FeatureBar } from "@/components/landing/FeatureBar";
 import { MissionSection } from "@/components/landing/MissionSection";
+import { PursuitsSection } from "@/components/landing/PursuitsSection";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <Hero />
       <FeatureBar />
       <MissionSection />
+      <PursuitsSection />
 
       <section className="section bg-[var(--cairn-night)] text-white">
         <div className="container">
