@@ -1,26 +1,19 @@
+import Image from "next/image";
 import Link from "next/link";
-import { CairnMark } from "@/components/icons/CairnMark";
 
-type LogoProps = {
-  inverted?: boolean;
-};
-
-export function Logo({ inverted = false }: LogoProps) {
+export function Logo() {
   return (
-    <Link
-      href="/"
-      className="inline-flex items-center gap-3"
-      aria-label="Cairn home"
-    >
-      <CairnMark className="h-12 w-12" />
+    <Link href="/" className="flex items-center gap-3">
+      <Image
+        src="/brand/logo.svg"
+        alt="Cairn"
+        width={42}
+        height={58}
+        priority
+      />
 
-      <span
-        className={[
-          "text-xl font-bold tracking-[0.32em]",
-          inverted ? "text-white" : "text-[var(--cairn-ink)]",
-        ].join(" ")}
-      >
-        CAIRN
+      <span className="text-xl font-semibold tracking-tight">
+        Cairn
       </span>
     </Link>
   );

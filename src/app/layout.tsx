@@ -8,19 +8,88 @@ const manrope = Manrope({
   display: "swap",
 });
 
+const SITE_URL = "https://cairn.example";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+
   title: {
-    default: "Cairn — The Living Map of the Outdoors",
+    default: "Cairn | The Living Map of the Outdoors",
     template: "%s | Cairn",
   },
+
   description:
-    "Real-time conditions, community observations, and trusted outdoor data.",
-  metadataBase: new URL("https://cairn.example"),
+    "Real-time trail conditions, route intelligence, community observations, and outdoor maps. Launching soon.",
+
+  keywords: [
+    "outdoor maps",
+    "trail conditions",
+    "hiking",
+    "cycling",
+    "skiing",
+    "running",
+    "camping",
+    "fishing",
+    "trail reports",
+    "route planning",
+    "outdoor app",
+    "MapLibre",
+    "Utah hiking",
+    "backcountry",
+  ],
+
+  authors: [
+    {
+      name: "Cairn",
+    },
+  ],
+
+  creator: "Cairn",
+
+  category: "Outdoors",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   openGraph: {
-    title: "Cairn — The Living Map of the Outdoors",
+    title: "Cairn | The Living Map of the Outdoors",
+
     description:
-      "Real-time conditions, community observations, and trusted outdoor data.",
+      "Real-time trail conditions, route intelligence, community observations, and outdoor maps.",
+
+    url: SITE_URL,
+
+    siteName: "Cairn",
+
+    locale: "en_US",
+
     type: "website",
+
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cairn",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title: "Cairn",
+
+    description:
+      "The Living Map of the Outdoors.",
+
+    images: ["/og-image.jpg"],
   },
 };
 
