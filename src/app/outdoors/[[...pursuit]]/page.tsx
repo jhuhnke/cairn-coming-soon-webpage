@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export default function OutdoorsComingSoonPage() {
   return (
@@ -32,12 +33,14 @@ export default function OutdoorsComingSoonPage() {
             follow along.
           </p>
 
-          <Link
-            href="/#waitlist"
-            className="mt-9 inline-flex rounded-[var(--radius-small)] bg-[var(--cairn-orange)] px-5 py-4 text-xs font-bold uppercase tracking-wide text-white"
+          <TrackedLink
+            href="#waitlist"
+            eventName="hero_cta_click"
+            eventSource="hero"
+            className="inline-flex items-center rounded-full bg-[var(--cairn-orange)] px-5 py-3 text-white"
           >
             Join the waitlist
-          </Link>
+          </TrackedLink>
         </div>
       </Container>
     </main>

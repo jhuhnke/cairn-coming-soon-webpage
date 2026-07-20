@@ -66,16 +66,34 @@ export async function POST(request: Request) {
   try {
     const supabase = createSupabaseAdminClient();
 
-    const { error } = await supabase
+      const { error } = await supabase
       .from("waitlist_signups")
       .insert({
         email,
         source,
         referrer,
       });
-
+    
     if (error) {
       if (error.code === "23505") {
+        const { error: duplicateAnalyticsError } = await supabase
+          .from("analytics_events")
+          .insert({
+            event_name: "waitlist_duplicate",
+            source,
+            path: "/",
+            metadata: {
+              referrer,
+            },
+          });
+    
+        if (duplicateAnalyticsError) {
+          console.error("Duplicate analytics insert failed", {
+            code: duplicateAnalyticsError.code,
+            message: duplicateAnalyticsError.message,
+          });
+        }
+    
         return NextResponse.json(
           {
             message: "You’re already on the waitlist.",
@@ -85,12 +103,12 @@ export async function POST(request: Request) {
           },
         );
       }
-
+    
       console.error("Waitlist signup failed", {
         code: error.code,
         message: error.message,
       });
-
+    
       return NextResponse.json(
         {
           message: "Unable to join the waitlist right now. Please try again.",
@@ -100,7 +118,25 @@ export async function POST(request: Request) {
         },
       );
     }
-
+    
+    const { error: analyticsError } = await supabase
+      .from("analytics_events")
+      .insert({
+        event_name: "waitlist_signup",
+        source,
+        path: "/",
+        metadata: {
+          referrer,
+        },
+      });
+    
+    if (analyticsError) {
+      console.error("Waitlist analytics insert failed", {
+        code: analyticsError.code,
+        message: analyticsError.message,
+      });
+    }
+    
     return NextResponse.json(
       {
         message: "You’re on the list!",

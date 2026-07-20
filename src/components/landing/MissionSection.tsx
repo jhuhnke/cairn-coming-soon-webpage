@@ -31,7 +31,7 @@ export function MissionSection() {
       </div>
 
       <Container className="relative z-10">
-        <div className="grid min-h-[670px] items-center gap-16 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 lg:py-0">
+        <div className="grid items-center gap-16 py-20 md:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 lg:pt-24 lg:pb-28">
           <div className="max-w-xl">
             <p className="eyebrow">{missionContent.eyebrow}</p>
 
@@ -62,7 +62,7 @@ export function MissionSection() {
             </Link>
           </div>
 
-          <div className="relative flex min-h-[590px] items-end justify-center lg:min-h-[670px]">
+          <div className="relative flex min-h-[590px] items-center justify-center lg:min-h-[620px]">
             <PhoneMapMockup />
           </div>
         </div>

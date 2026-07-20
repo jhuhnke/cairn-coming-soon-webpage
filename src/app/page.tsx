@@ -5,10 +5,14 @@ import { PursuitsSection } from "@/components/landing/PursuitsSection";
 import { WaitlistSection } from "@/components/landing/WaitlistSection";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { PageViewTracker } from "@/components/analytics/PageViewTracker";
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
 export default function HomePage() {
   return (
     <>
+      <PageViewTracker />
+      <ScrollDepthTracker />
       <Header />
 
       <main>
@@ -16,15 +20,9 @@ export default function HomePage() {
         <FeatureBar />
         <MissionSection />
         <PursuitsSection />
+        <WaitlistSection />
 
-        <section className="section bg-[var(--cairn-night)] text-white">
-          <div className="container">
-            <p className="eyebrow">Next section</p>
-            <h2 className="mt-4 text-4xl font-semibold">
-              Real-time outdoor intelligence.
-            </h2>
-          </div>
-        </section>
+        
       </main>
 
       <Footer />

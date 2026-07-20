@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { FooterLandscape } from "@/components/landing/FooterLandscape";
 import { Logo } from "@/components/layout/Logo";
 import { Container } from "@/components/ui/Container";
 
@@ -8,7 +7,7 @@ const navigation = [
   { label: "Mission", href: "/#mission" },
   { label: "Product", href: "/#product" },
   { label: "Outdoors", href: "/#outdoors" },
-  { label: "Updates", href: "/#updates" },
+  { label: "Updates", href: "/#waitlist" },
 ];
 
 const legal = [
@@ -18,50 +17,61 @@ const legal = [
 
 export function Footer() {
   return (
-    <footer className="overflow-hidden bg-[var(--cairn-night)] text-white">
-      <div className="border-b border-white/10">
-        <Container className="grid gap-12 py-14 md:grid-cols-[1fr_auto] md:items-start">
-          <div>
+    <footer className="relative overflow-hidden bg-[var(--cairn-night)] text-white">
+      <div
+        className={[
+          "pointer-events-none absolute inset-x-0 bottom-0 h-44",
+          "bg-[url('/textures/topography.svg')]",
+          "bg-[length:540px_auto] bg-bottom opacity-[0.035]",
+        ].join(" ")}
+        aria-hidden="true"
+      />
+
+      <Container className="relative">
+        <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_1fr] md:items-start md:py-16">
+          <div className="max-w-md">
             <Logo inverted />
 
-            <p className="mt-5 max-w-md text-sm leading-7 text-white/65">
-              A living map built from real conditions, trusted sources, and the
-              people exploring the outdoors.
+            <p className="mt-5 text-sm leading-7 text-white/60">
+              A living map built from real conditions, trusted sources, and
+              the people exploring the outdoors.
+            </p>
+
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-white/40">
+              Built in Utah · Inspired by the Wasatch
             </p>
           </div>
 
           <nav
-            className="grid grid-cols-2 gap-x-12 gap-y-4 text-sm md:text-right"
             aria-label="Footer navigation"
+            className="grid grid-cols-2 gap-x-10 gap-y-4 text-sm md:justify-self-end"
           >
             {navigation.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
-                className="text-white/70 transition hover:text-white"
+                className="text-white/65 transition hover:text-white"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-        </Container>
-      </div>
+        </div>
 
-      <FooterLandscape />
+        <div className="relative flex flex-col gap-4 border-t border-white/10 py-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Cairn. All rights reserved.</p>
 
-      <Container className="flex flex-col gap-4 border-t border-white/10 py-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Cairn. All rights reserved.</p>
-
-        <div className="flex gap-5">
-          {legal.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+          <div className="flex gap-6">
+            {legal.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="transition hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </Container>
     </footer>
