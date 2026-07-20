@@ -6,24 +6,19 @@ import type { Pursuit } from "@/data/pursuits";
 
 type PursuitCardProps = {
   pursuit: Pursuit;
-  featured?: boolean;
 };
 
-export function PursuitCard({
-  pursuit,
-  featured = false,
-}: PursuitCardProps) {
+export function PursuitCard({ pursuit }: PursuitCardProps) {
   return (
     <Link
       href={pursuit.href}
       className={[
-        "group relative isolate block overflow-hidden rounded-[22px]",
+        "group relative isolate aspect-[4/3] overflow-hidden rounded-[22px]",
         "bg-[var(--cairn-night)]",
+        "shadow-[0_14px_40px_rgba(23,41,52,0.08)]",
+        "transition duration-300 hover:-translate-y-1",
         "focus-visible:outline-2 focus-visible:outline-offset-4",
         "focus-visible:outline-[var(--cairn-orange)]",
-        featured
-          ? "min-h-[430px] md:min-h-[520px]"
-          : "min-h-[330px] md:min-h-[360px]",
       ].join(" ")}
       aria-label={`Explore Cairn for ${pursuit.name}`}
     >
@@ -31,12 +26,8 @@ export function PursuitCard({
         src={pursuit.image}
         alt=""
         fill
-        sizes={
-          featured
-            ? "(max-width: 768px) 100vw, 58vw"
-            : "(max-width: 768px) 100vw, 33vw"
-        }
-        className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover transition duration-700 ease-out group-hover:scale-105"
       />
 
       <div
@@ -45,29 +36,30 @@ export function PursuitCard({
       />
 
       <div
-        className="absolute inset-0 bg-[var(--cairn-orange)]/0 transition-colors duration-500 group-hover:bg-[var(--cairn-orange)]/10"
+        className="absolute inset-0 bg-[var(--cairn-orange)]/0 transition duration-500 group-hover:bg-[var(--cairn-orange)]/10"
         aria-hidden="true"
       />
 
-      <div className="absolute inset-x-0 bottom-0 z-10 p-6 md:p-8">
-        <div className="flex items-end justify-between gap-5">
+      <div className="absolute inset-x-0 bottom-0 z-10 p-6">
+        <div className="flex items-end justify-between gap-4">
           <div>
-            <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">
+            <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white">
               {pursuit.name}
             </h3>
 
-            <p className="mt-3 max-w-md text-sm leading-6 text-white/75">
+            <p className="mt-2 max-w-[280px] text-sm leading-6 text-white/75">
               {pursuit.description}
             </p>
           </div>
 
           <span
             className={[
-              "flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
+              "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
               "border border-white/30 bg-white/10 text-white backdrop-blur-sm",
               "transition duration-300",
-              "group-hover:-translate-y-1 group-hover:translate-x-1",
-              "group-hover:border-white/60 group-hover:bg-white group-hover:text-[var(--cairn-ink)]",
+              "group-hover:translate-x-1 group-hover:-translate-y-1",
+              "group-hover:border-white group-hover:bg-white",
+              "group-hover:text-[var(--cairn-ink)]",
             ].join(" ")}
             aria-hidden="true"
           >

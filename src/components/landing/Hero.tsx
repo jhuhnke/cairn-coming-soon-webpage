@@ -26,7 +26,7 @@ export function Hero() {
           </p>
 
           <div className="mt-9">
-            <WaitlistForm />
+            <WaitlistForm source="hero" />
           </div>
 
           <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em]">

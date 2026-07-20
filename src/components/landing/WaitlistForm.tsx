@@ -7,10 +7,12 @@ type SubmissionState = "idle" | "submitting" | "success" | "error";
 
 type WaitlistFormProps = {
   theme?: "default" | "light";
+  source?: string;
 };
 
 export function WaitlistForm({
   theme = "default",
+  source = "coming-soon-page",
 }: WaitlistFormProps) {
   const [email, setEmail] = useState("");
   const [submissionState, setSubmissionState] =
@@ -29,7 +31,11 @@ export function WaitlistForm({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          source,
+          referrer: document.referrer || null,
+        }),
       });
 
       const result = (await response.json()) as {

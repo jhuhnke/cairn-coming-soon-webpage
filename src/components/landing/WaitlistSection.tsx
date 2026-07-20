@@ -44,7 +44,7 @@ export function WaitlistSection() {
           </p>
 
           <div className="mx-auto mt-9 max-w-xl rounded-2xl bg-white/10 p-3 backdrop-blur-sm">
-            <WaitlistForm theme="light" />
+            <WaitlistForm theme="light" source="closing-cta" />
           </div>
 
           <p className="mt-5 text-xs text-white/65">
