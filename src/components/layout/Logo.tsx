@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function Logo() {
+interface LogoProps {
+  inverted?: boolean;
+}
+
+export function Logo({ inverted }: LogoProps) {
   return (
     <Link href="/" className="flex items-center gap-3">
       <Image
@@ -12,7 +16,11 @@ export function Logo() {
         priority
       />
 
-      <span className="text-xl font-semibold tracking-tight">
+      <span
+        className={`text-xl font-semibold tracking-tight ${
+          inverted ? "text-white" : "text-black"
+        }`}
+      >
         Cairn
       </span>
     </Link>

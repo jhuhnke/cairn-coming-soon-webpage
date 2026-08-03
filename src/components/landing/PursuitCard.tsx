@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ActivityArrowIcon } from "@/components/icons/ActivityArrowIcon";
-import type { Pursuit } from "@/data/pursuits";
+import { pursuits } from "@/data/pursuits";
 
 type PursuitCardProps = {
-  pursuit: Pursuit;
+  pursuit: (typeof pursuits)[number];
 };
 
 export function PursuitCard({ pursuit }: PursuitCardProps) {

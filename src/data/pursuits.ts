@@ -1,3 +1,10 @@
+interface Pursuit {
+  name: string;
+  description: string;
+  image: string;
+  href: string;
+}
+
 export const pursuits: Pursuit[] = [
   {
     name: "Hiking",
