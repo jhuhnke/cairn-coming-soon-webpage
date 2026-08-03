@@ -8,7 +8,7 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const SITE_URL = "https://cairn.example";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
