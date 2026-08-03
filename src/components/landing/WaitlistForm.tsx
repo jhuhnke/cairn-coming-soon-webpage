@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
+import { supabase } from "@/lib/supabase/client";
 
 type SubmissionState = "idle" | "submitting" | "success" | "error";
 
@@ -23,34 +24,42 @@ export function WaitlistForm({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (!normalizedEmail) {
+      setSubmissionState("error");
+      setMessage("Please enter an email address.");
+      return;
+    }
+
     setSubmissionState("submitting");
     setMessage("");
 
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          source,
-          referrer: document.referrer || null,
-        }),
+      const { error } = await supabase.from("waitlist_signups").insert({
+        email: normalizedEmail,
+        source,
+        referrer: document.referrer || null,
       });
 
-      const result = (await response.json()) as {
-        message?: string;
-      };
+      if (error) {
+        // PostgreSQL unique-constraint violation.
+        if (error.code === "23505") {
+          setSubmissionState("success");
+          setMessage("You're already on the list!");
+          setEmail("");
+          return;
+        }
 
-      if (!response.ok) {
-        throw new Error(result.message ?? "Unable to join the waitlist.");
+        throw new Error(error.message);
       }
 
       setSubmissionState("success");
-      setMessage(result.message ?? "You're on the list!");
+      setMessage("You're on the list!");
       setEmail("");
     } catch (error) {
+      console.error("Waitlist submission failed:", error);
+
       setSubmissionState("error");
       setMessage(
         error instanceof Error
