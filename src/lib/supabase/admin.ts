@@ -11,9 +11,9 @@ function getRequiredEnvironmentVariable(name: string): string {
 }
 
 export function createSupabaseAdminClient() {
-  const supabaseUrl = getRequiredEnvironmentVariable("SUPABASE_URL");
+  const supabaseUrl = getRequiredEnvironmentVariable("NEXT_PUBLIC_SUPABASE_URL");
   const supabaseSecretKey = getRequiredEnvironmentVariable(
-    "SUPABASE_SECRET_KEY",
+    "NEXT_PUBLIC_SUPABASE_SECRET_KEY",
   );
 
   return createClient(supabaseUrl, supabaseSecretKey, {
