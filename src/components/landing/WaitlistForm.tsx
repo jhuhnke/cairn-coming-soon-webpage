@@ -118,7 +118,7 @@ export function WaitlistForm({
         >
           In the meantime,{" "}
           <a
-            href="https://x.com/YOUR_HANDLE"
+            href="https://x.com/CairnOutdoors"
             target="_blank"
             rel="noreferrer"
             className={[
